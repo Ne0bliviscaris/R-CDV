@@ -1,0 +1,248 @@
+# ----------------------------------------
+# Wyeksportowany raport w formacie CSV
+# Konto: Wypożyczalnia Analytics
+# Usługa: Wypożyczalnia
+# ----------------------------------------
+#  
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+N-ty dzień,Użytkownicy
+0000,1
+0001,7
+0002,4
+0003,3
+0004,2
+0005,2
+0006,4
+0007,0
+0008,2
+0009,3
+0010,3
+0011,0
+0012,4
+0013,2
+0014,1
+0015,0
+0016,3
+0017,3
+0018,5
+0019,2
+0020,3
+0021,3
+0022,6
+0023,1
+0024,6
+0025,2
+0026,2
+0027,3
+
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+N-ty dzień,Nowi użytkownicy
+0000,1
+0001,6
+0002,4
+0003,3
+0004,2
+0005,2
+0006,4
+0007,0
+0008,2
+0009,3
+0010,3
+0011,0
+0012,4
+0013,2
+0014,1
+0015,0
+0016,3
+0017,3
+0018,5
+0019,2
+0020,3
+0021,3
+0022,6
+0023,1
+0024,5
+0025,2
+0026,2
+0027,2
+
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+N-ty dzień,Średni czas zaangażowania
+0000,60
+0001,47.857142857142854
+0002,2.5
+0003,18.333333333333332
+0004,5
+0005,14
+0006,29
+0007,0
+0008,62.5
+0009,31.666666666666668
+0010,21.666666666666668
+0011,0
+0012,36.25
+0013,25.5
+0014,78
+0015,0
+0016,71.33333333333333
+0017,28.666666666666668
+0018,19.6
+0019,0
+0020,34
+0021,21
+0022,51.666666666666664
+0023,13
+0024,24.166666666666668
+0025,26.5
+0026,0
+0027,52
+
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+N-ty dzień,Łączne przychody
+0000,0
+0001,0
+0002,0
+0003,0
+0004,0
+0005,0
+0006,0
+0007,0
+0008,0
+0009,0
+0010,0
+0011,0
+0012,0
+0013,0
+0014,0
+0015,0
+0016,0
+0017,0
+0018,0
+0019,0
+0020,0
+0021,0
+0022,0
+0023,0
+0024,0
+0025,0
+0026,0
+0027,0
+
+# Skąd pochodzą Twoi nowi użytkownicy?
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Pierwszy użytkownik – domyślna grupa kanałów,Nowi użytkownicy
+Paid Search,55
+Direct,9
+Organic Search,9
+Referral,1
+
+#  
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Sesja – domyślna grupa kanałów,Sesje
+Paid Search,64
+Direct,9
+Organic Search,9
+Display,2
+Referral,1
+
+#  
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Identyfikator kraju,Użytkownicy
+DE,6
+IE,1
+NO,1
+PL,68
+
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Kraj,Użytkownicy
+PL,68
+DE,6
+IE,1
+NO,1
+
+# Jak prezentują się trendy w aktywności użytkowników?
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+N-ty dzień,30 dni,7 dni,1 dzień
+0000,64,17,1
+0001,71,21,7
+0002,72,23,4
+0003,73,25,3
+0004,74,24,2
+0005,73,23,2
+0006,74,23,4
+0007,74,22,0
+0008,75,17,2
+0009,78,16,3
+0010,75,16,3
+0011,71,14,0
+0012,73,16,4
+0013,73,14,2
+0014,74,15,1
+0015,74,13,0
+0016,76,13,3
+0017,73,13,3
+0018,76,18,5
+0019,77,16,2
+0020,77,17,3
+0021,76,19,3
+0022,80,25,6
+0023,80,23,1
+0024,82,25,6
+0025,82,22,2
+0026,83,22,2
+0027,82,23,3
+
+# W jakim stopniu udaje Ci się utrzymać użytkowników?
+# Data rozpoczęcia: 20230910
+# Data zakończenia: 20231021
+Data,Tydzień 0,Tydzień 1,Tydzień 2,Tydzień 3,Tydzień 4,Tydzień 5
+10 wrz - 16 wrz,19,0,0
+17 wrz - 23 wrz,16,0,0
+24 wrz - 30 wrz,22,0,1
+1 paź - 7 paź,14,0,0
+8 paź - 14 paź,17,1,-1
+15 paź - 21 paź,21,-1,-1
+
+#  
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Tytuł strony i klasa ekranu,Wyświetlenia
+Wypożyczalnia Busów Binino,85
+Wypożyczalnia Busów Binino - Wypożyczalnia Samochodów w: Ostroróg,5
+
+#  
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Nazwa wydarzenia,Liczba zdarzeń
+page_view,90
+session_start,85
+scroll,80
+first_visit,74
+user_engagement,55
+click,15
+
+# Jakie konwersje są najważniejsze na Twoim koncie?
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Nazwa wydarzenia,Konwersje
+
+
+#  
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Nazwa,Kupione produkty
+
+
+# Jak wygląda zestawienie aktywności na Twoich platformach?
+# Data rozpoczęcia: 20230924
+# Data zakończenia: 20231021
+Platforma,Konwersje
