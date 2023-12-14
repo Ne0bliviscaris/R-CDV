@@ -18,30 +18,9 @@ v1 <-  c(10.8, 12.9, 4.7, 28.1, 6.1, 23.1, 20.2, 23.7, 30.4, 24.6, 7.7, 14.8,
 
 # Dekompozycja szeregu czasowego
 v1.ts <- ts(v1, start=c(2009,1), frequency=12) # podział wektora na time series po 12 elementów na rok
-v1.decomp <- decompose(v1.ts, type="additive") # dekompozycja addytywna
-plot(v1.decomp) # wykres dekompozycji addytywnej
-v1.decomp <- decompose(v1.ts, type="multiplicative") # dekompozycja
+# Czytelne wyniki daje dekompozycja w modelu multiplikatywnym
+v1.decomp <- decompose(v1.ts, type="multiplicative") # dekompozycja multiplikatywna
 plot(v1.decomp) # wykres dekompozycji multiplikatywnej
-
-
-
-
-
-
-
-
-# WYBRAĆ METODĘ DEKOMPOZYCJI
-# MULTIPLIKATYWNA BARDZIEJ ODPOWIEDNIA
-
-
-
-
-
-
-
-
-
-
 
 str(v1.decomp) # struktura obiektu v1.decomp
 # v1.decomp - wynik dekompozycji szeregu czasowego
@@ -56,15 +35,13 @@ min_month <- which.min(v1.seasonal_mean)
 print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych:", max_month))
 print(paste("Miesiąc z najniższym poziomem wahań sezonowych:", min_month))
 
-
 # Obliczenie odchylenia od średniej dla każdego miesiąca
 print(v1.seasonal_mean) # wyświetla tabelę z wartościami średnimi dla każdego miesiąca
 # Obliczenie procentowego odchylenia od średniej dla każdego miesiąca
 v1.seasonal_mean_perc <- (v1.seasonal_mean - mean(v1.seasonal_mean)) / mean(v1.seasonal_mean) * 100
-# wyświetla tabelę z wartościami procentowymi odchylenia od średniej dla każdego miesiąca z zaokrągleniem do 2 miejsc po przecinku
-print(round(v1.seasonal_mean_perc),2) 
-print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych: ", max_month, "-", which.max(v1.seasonal_mean_perc), "%"))
-print(paste("Miesiąc z najniższym poziomem wahań sezonowych: ", min_month, "-", which.min(v1.seasonal_mean_perc), "%"))
-
+# Wyświetla tabelę z wartościami procentowymi odchylenia od średniej dla każdego miesiąca
+print(v1.seasonal_mean_perc)
+print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych: ", max_month, "-", round(v1.seasonal_mean_perc[which.max(v1.seasonal_mean_perc)],1), "%"))
+print(paste("Miesiąc z najniższym poziomem wahań sezonowych: ", min_month, "-", round(v1.seasonal_mean_perc[which.min(v1.seasonal_mean_perc)],1), "%"))
 
 
