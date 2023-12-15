@@ -30,30 +30,37 @@
 # Porównaj modele ze względu na wartość R kwadrat 
 # i stwórz wykresy diagnostyczne dla obu modeli.
 
-# Załaduj zestaw danych Auto z pakietu ISLR
-ISLR::Auto
-# Wyświetl pierwsze sześć wierszy zestawu danych Auto
-head(ISLR::Auto)
-# Wyświetl podsumowanie statystyczne dla każdej kolumny w zestawie danych Auto
-summary(ISLR::Auto)
-# Utwórz model liniowy przewidujący mpg (miles per gallon) na podstawie horsepower (moc koni mechanicznych) w zestawie danych Auto
-model1 <- lm(mpg ~ horsepower, data=ISLR::Auto)
-# Wyświetl podsumowanie modelu liniowego model1, w tym statystyki takie jak R-squared, p-value, etc.
-summary(model1)
-# Przewiduj mpg dla samochodu o mocy 98 KM, używając modelu model1
-predict(model1, newdata=data.frame(horsepower=98), interval="confidence")
-# Utwórz wykres punktowy mpg w funkcji horsepower
-plot(ISLR::Auto$horsepower, ISLR::Auto$mpg)
-plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab = "Horsepower", ylab = "MPG")
-# Dodaj linię regresji do wykresu punktowego
-abline(model1)
-# Utwórz wykresy diagnostyczne dla modelu model1
+head(ISLR::Auto) # pierwsze 6 obserwacji
+str(ISLR::Auto) # struktura danych
+table(is.na(ISLR::Auto)) # sprawdzenie czy są braki danych
+summary(ISLR::Auto) # podstawowe statystyki
+head(unique(ISLR::Auto$name)) # sprawdzenie zawartości kolumny name
+colnames(ISLR::Auto) # nazwy kolumn
+model1 <- lm(mpg ~ horsepower, data=ISLR::Auto) # tworzenie modelu mierzącego wpływ mocy silnika (horsepower) na spalanie (mpg)
+summary(model1) # podsumowanie modelu
+
+cat("Wraz ze wzrostem mocy silnika, współczynnik mpg maleje.") #a)
+cat("Współczynnik regresji wynosi -0.1578, co oznacza, że wraz ze wzrostem mocy silnika o 1 jednostkę, mpg maleje o 0.1578 jednostki.") #b)
+predict(model1, data.frame(horsepower=98), interval="confidence") # c) predykcja dla mocy silnika 98
+plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab="Horsepower", ylab="Miles per galon", main="Wpływ mocy silnika na spalanie", col="#5c1515") # d)
+abline(model1, col="#5c1515") # dodanie linii regresji do wykresu
+plot(model1) # e) wykresy diagnostyczne
+
+print("Macierz korelacji dla zmiennych numerycznych")
+cor(ISLR::Auto[, sapply(ISLR::Auto, is.numeric)]) # macierz korelacji dla zmiennych numerycznych
+cat("Zmienne numeryczne silnie skorelowane ze zmienną objaśnianą (mpg):\n") #f) silna koleracja z mpg
+names(abs(cor(Auto[, sapply(Auto, is.numeric)])[,"mpg"])[abs(cor(Auto[, sapply(Auto, is.numeric)])[,"mpg"])>0.7])
+
+model2 <- lm(mpg ~ ., data=ISLR::Auto) # model2 oparty na wszystkich zmiennych
+summary(model2) # podsumowanie modelu
+p_values <- summary(model2)$coefficients[, "Pr(>|t|)"] # p-value dla wszystkich zmiennych objaśniających
+significant_variables <- names(p_values)[p_values < 0.05] # zmienna jest istotna, jeśli p-value < 0.05
+cat("Zmienne powiązane z mpg w statystycznie istotnyn stopniu:\n")
+print(significant_variables) #g)
+cat("Współczynnik year odpowiada za rok produkcji samochodu.") #h)
+cat("R-squared dla modelu1:", summary(model1)$r.squared)
+cat("R-squared dla modelu2:", summary(model2)$r.squared)
+cat("R-squared dla modelu2 jest większe, co oznacza, że model2 lepiej wyjaśnia zmienność mpg.")
 plot(model1)
-# Oblicz współczynnik korelacji Pearsona dla wybranych kolumn zestawu danych Auto
-cor(ISLR::Auto[,c(1,3,4,5,6,7)])
-# Utwórz model liniowy przewidujący mpg na podstawie wszystkich innych zmiennych w zestawie danych Auto
-model2 <- lm(mpg ~ ., data=ISLR::Auto)
-# Wyświetl podsumowanie modelu liniowego model2
-summary(model2)
-# Utwórz wykresy diagnostyczne dla modelu model2
 plot(model2)
+
