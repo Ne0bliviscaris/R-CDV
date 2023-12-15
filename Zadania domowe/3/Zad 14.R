@@ -30,6 +30,12 @@
 # Porównaj modele ze względu na wartość R kwadrat 
 # i stwórz wykresy diagnostyczne dla obu modeli.
 
+?Auto
+
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
 head(ISLR::Auto) # pierwsze 6 obserwacji
 str(ISLR::Auto) # struktura danych
 table(is.na(ISLR::Auto)) # sprawdzenie czy są braki danych
@@ -42,8 +48,8 @@ summary(model1) # podsumowanie modelu
 cat("Wraz ze wzrostem mocy silnika, współczynnik mpg maleje.") #a)
 cat("Współczynnik regresji wynosi -0.1578, co oznacza, że wraz ze wzrostem mocy silnika o 1 jednostkę, mpg maleje o 0.1578 jednostki.") #b)
 predict(model1, data.frame(horsepower=98), interval="confidence") # c) predykcja dla mocy silnika 98
-plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab="Horsepower", ylab="Miles per galon", main="Wpływ mocy silnika na spalanie", col="#5c1515") # d)
-abline(model1, col="#5c1515") # dodanie linii regresji do wykresu
+plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab="Horsepower", ylab="Miles per galon", main="Wpływ mocy silnika na spalanie", col="darkblue") # d)
+abline(model1, col="red") # dodanie linii regresji do wykresu
 plot(model1) # e) wykresy diagnostyczne
 
 print("Macierz korelacji dla zmiennych numerycznych")
@@ -63,4 +69,3 @@ cat("R-squared dla modelu2:", summary(model2)$r.squared)
 cat("R-squared dla modelu2 jest większe, co oznacza, że model2 lepiej wyjaśnia zmienność mpg.")
 plot(model1)
 plot(model2)
-

@@ -19,35 +19,28 @@
 #
 # --------------------------------------------------------
 # tu wpisz swój kod: 
+
 vec <- rpois(1000, lambda=6)
-# - średnią, 
 cat("Średnia: ", mean(vec), "\n")
-# - rozstęp, 
 cat("Rozstęp: ", range(vec), "\n")
-# - wariancję, 
 cat("Wariancja: ", var(vec), "\n")
-# - kwartyle, 
 cat("Kwartyle: ", quantile(vec), "\n")
-# - rozstęp międzykwartylowy, 
 cat("Rozstęp międzykwartylowy: ", IQR(vec), "\n")
-# - kurtozę, 
 cat("Kurtoza: ", moments::kurtosis(vec), "\n")
-# - skośność ,
 cat("Skośność: ", moments::skewness(vec), "\n")
-# - oraz dominantę.
-cat("Dominanta: ", dominant(vec), "\n")
+cat("Dominanta: ", as.numeric(names(sort(-table(vec)))[1]), "\n")
 
-as.numeric(names(sort(-table(vec)))[1])
-table(vec)
-max(table(vec))
-# Zwizualizuj wektor za pomocą histogramu oraz wykresu pudełkowego (użyj kolorów, ustaw tytuły osi, wykresu).
-# Jak mają się do siebie średnia, mediana i dominanta?
-# Wygeneruj ponownie losowy wektor (korzystając z tej samej komendy) i uruchom ponownie napisane komendy. 
-# Czy są wyraźne różnice?
+hist(vec, col="red", main="Histogram 1", xlab="Wartości", ylab="Częstość") # histogram vec
+boxplot(vec, col="blue", main="Wykres pudełkowy 1", ylab="Wartości", range=1) # wykres pudełkowy vec
+?boxplot
+vec2 <- rpois(1000, lambda=6)
+hist(vec2, col="blue", main="Histogram 2", xlab="Wartości", ylab="Częstość") # histogram vec2
+boxplot(vec2, col="red", main="Wykres pudełkowy 2", ylab="Wartości", range=1) # wykres pudełkowy vec2
 
-hist(vec, col="red", main="Histogram", xlab="Wartości", ylab="Częstość")
-boxplot(vec, col="blue", main="Wykres pudełkowy", xlab="Wartości", ylab="Częstość")
+par(mfrow = c(1, 2)) # wykresy obok siebie
+hist(vec, col="red", main="Histogram 1", xlab="Wartości", ylab="Częstość") # histogram vec
+hist(vec2, col="blue", main="Histogram 2", xlab="Wartości", ylab="Częstość") # histogram vec2
+par(mfrow = c(1, 2)) # wykresy obok siebie
+boxplot(vec, col="blue", main="Wykres pudełkowy 1", ylab="Wartości", range=1) # wykres pudełkowy vec
+boxplot(vec2, col="red", main="Wykres pudełkowy 2", ylab="Wartości", range=1) # wykres pudełkowy vec2
 
-vec <- rpois(1000, lambda=6)
-hist(vec, col="blue", main="Histogram", xlab="Wartości", ylab="Częstość")
-boxplot(vec, col="red", main="Wykres pudełkowy", xlab="Wartości", ylab="Częstość")

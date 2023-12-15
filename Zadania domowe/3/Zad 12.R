@@ -32,4 +32,4 @@ str(mdeaths) # struktura danych
 table(is.na(mdeaths)) # sprawdzenie czy są braki danych
 # Zbiór mdeaths to szereg czasowy 72 miesięcznych pomiarów liczby zgonów na zapalenie oskrzeli, rozedmę płuc i astmę  pośród mężczyzn w Anglii i Walii w latach 1974-1979.
 # W zbiorze nie ma braków danych.
-plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku zapalenia oskrzeli, rozedmy płuc i astmy pośród mężczyzn w UK w latach 1974-1979.", col="#5c1515")
+plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku zapalenia oskrzeli,\nrozedmy płuc i astmy pośród mężczyzn w UK\nw latach 1974-1979.", col="#5c1515")

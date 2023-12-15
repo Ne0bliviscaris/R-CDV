@@ -32,8 +32,8 @@ print(v1.seasonal_mean) # wyświetla tabelę z wartościami średnimi dla każde
 max_month <- which.max(v1.seasonal_mean)
 # Znalezienie miesiąca z najniższym poziomem wahań sezonowych
 min_month <- which.min(v1.seasonal_mean)
-print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych:", max_month))
-print(paste("Miesiąc z najniższym poziomem wahań sezonowych:", min_month))
+print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych:", month.name[max_month]))
+print(paste("Miesiąc z najniższym poziomem wahań sezonowych:", month.name[min_month]))
 
 # Obliczenie odchylenia od średniej dla każdego miesiąca
 print(v1.seasonal_mean) # wyświetla tabelę z wartościami średnimi dla każdego miesiąca
@@ -41,7 +41,7 @@ print(v1.seasonal_mean) # wyświetla tabelę z wartościami średnimi dla każde
 v1.seasonal_mean_perc <- (v1.seasonal_mean - mean(v1.seasonal_mean)) / mean(v1.seasonal_mean) * 100
 # Wyświetla tabelę z wartościami procentowymi odchylenia od średniej dla każdego miesiąca
 print(v1.seasonal_mean_perc)
-print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych: ", max_month, "-", round(v1.seasonal_mean_perc[which.max(v1.seasonal_mean_perc)],1), "%"))
-print(paste("Miesiąc z najniższym poziomem wahań sezonowych: ", min_month, "-", round(v1.seasonal_mean_perc[which.min(v1.seasonal_mean_perc)],1), "%"))
+print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych: ", month.name[max_month], "(", round(v1.seasonal_mean_perc[which.max(v1.seasonal_mean_perc)],1), "%)"))
+print(paste("Miesiąc z najniższym poziomem wahań sezonowych: ", month.name[min_month], "(", round(v1.seasonal_mean_perc[which.min(v1.seasonal_mean_perc)],1), "%)"))
 
 
