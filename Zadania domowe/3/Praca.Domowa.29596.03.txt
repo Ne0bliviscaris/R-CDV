@@ -16,7 +16,6 @@ Github: https://github.com/Ne0bliviscaris/R-CDV
 #   - czytelną wizualizację na wykresach. 
 #
 # --------------------------------------------------------
-# tu wpisz swój kod: 
 
 head(WWWusage) # pierwsze 6 obserwacji
 str(WWWusage) # struktura danych
@@ -38,9 +37,15 @@ str(mdeaths) # struktura danych
 table(is.na(mdeaths)) # sprawdzenie czy są braki danych
 # Zbiór mdeaths to szereg czasowy 72 miesięcznych pomiarów liczby zgonów na zapalenie oskrzeli, rozedmę płuc i astmę  pośród mężczyzn w Anglii i Walii w latach 1974-1979.
 # W zbiorze nie ma braków danych.
-plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku zapalenia oskrzeli, rozedmy płuc i astmy pośród mężczyzn w UK w latach 1974-1979.", col="#5c1515")
+plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku zapalenia oskrzeli,\nrozedmy płuc i astmy pośród mężczyzn w UK\nw latach 1974-1979.", col="#5c1515")
 
-# --------------------------------------------------------
+
+
+
+
+
+
+
 # Zadanie.13
 #
 # Dostępny jest zbiór danych prezentujących liczbę małżeństw (v1). Prezentuje on dane za okres od stycznia
@@ -55,9 +60,41 @@ plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku 
 # --------------------------------------------------------
 # tu wpisz swój kod: 
 
-	v1 <-  c(10.8, 12.9, 4.7, 28.1, 6.1, 23.1, 20.2, 23.7, 30.4, 24.6, 7.7, 14.8,
-			   10.2, 10.9, 4.9, 27.3, 6.0, 27.6, 16.7, 28.3, 26.7, 24.8, 8.2, 12.9,
-				9.8,  7.9, 8.1, 25.7, 6.3, 25.2, 18.8, 29.6, 26.2, 26.1, 8.3, 12.9)
+v1 <-  c(10.8, 12.9, 4.7, 28.1, 6.1, 23.1, 20.2, 23.7, 30.4, 24.6, 7.7, 14.8,
+         10.2, 10.9, 4.9, 27.3, 6.0, 27.6, 16.7, 28.3, 26.7, 24.8, 8.2, 12.9,
+         9.8,  7.9, 8.1, 25.7, 6.3, 25.2, 18.8, 29.6, 26.2, 26.1, 8.3, 12.9)
+
+# Dekompozycja szeregu czasowego
+v1.ts <- ts(v1, start=c(2009,1), frequency=12) # podział wektora na time series po 12 elementów na rok
+# Czytelne wyniki daje dekompozycja w modelu multiplikatywnym
+v1.decomp <- decompose(v1.ts, type="multiplicative") # dekompozycja multiplikatywna
+plot(v1.decomp) # wykres dekompozycji multiplikatywnej
+
+str(v1.decomp) # struktura obiektu v1.decomp
+# v1.decomp - wynik dekompozycji szeregu czasowego
+v1.seasonal <- v1.decomp$seasonal
+# Obliczenie średniej dla każdego miesiąca
+v1.seasonal_mean <- tapply(v1.seasonal, cycle(v1.seasonal), mean) #tworzy tabelę z wartościami średnimi dla każdego miesiąca
+print(v1.seasonal_mean) # wyświetla tabelę z wartościami średnimi dla każdego miesiąca
+# Znalezienie miesiąca z najwyższym dodatnim poziomem wahań sezonowych
+max_month <- which.max(v1.seasonal_mean)
+# Znalezienie miesiąca z najniższym poziomem wahań sezonowych
+min_month <- which.min(v1.seasonal_mean)
+print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych:", month.name[max_month]))
+print(paste("Miesiąc z najniższym poziomem wahań sezonowych:", month.name[min_month]))
+
+# Obliczenie odchylenia od średniej dla każdego miesiąca
+print(v1.seasonal_mean) # wyświetla tabelę z wartościami średnimi dla każdego miesiąca
+# Obliczenie procentowego odchylenia od średniej dla każdego miesiąca
+v1.seasonal_mean_perc <- (v1.seasonal_mean - mean(v1.seasonal_mean)) / mean(v1.seasonal_mean) * 100
+# Wyświetla tabelę z wartościami procentowymi odchylenia od średniej dla każdego miesiąca
+print(v1.seasonal_mean_perc)
+print(paste("Miesiąc z najwyższym dodatnim poziomem wahań sezonowych: ", month.name[max_month], "(", round(v1.seasonal_mean_perc[which.max(v1.seasonal_mean_perc)],1), "%)"))
+print(paste("Miesiąc z najniższym poziomem wahań sezonowych: ", month.name[min_month], "(", round(v1.seasonal_mean_perc[which.min(v1.seasonal_mean_perc)],1), "%)"))
+
+
+
+
 
 
 
@@ -93,7 +130,7 @@ plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku 
 # Porównaj modele ze względu na wartość R kwadrat 
 # i stwórz wykresy diagnostyczne dla obu modeli.
 
-	?Auto
+?Auto
 
 #
 # --------------------------------------------------------
@@ -111,8 +148,8 @@ summary(model1) # podsumowanie modelu
 cat("Wraz ze wzrostem mocy silnika, współczynnik mpg maleje.") #a)
 cat("Współczynnik regresji wynosi -0.1578, co oznacza, że wraz ze wzrostem mocy silnika o 1 jednostkę, mpg maleje o 0.1578 jednostki.") #b)
 predict(model1, data.frame(horsepower=98), interval="confidence") # c) predykcja dla mocy silnika 98
-plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab="Horsepower", ylab="Miles per galon", main="Wpływ mocy silnika na spalanie", col="#5c1515") # d)
-abline(model1, col="#5c1515") # dodanie linii regresji do wykresu
+plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab="Horsepower", ylab="Miles per galon", main="Wpływ mocy silnika na spalanie", col="darkblue") # d)
+abline(model1, col="red") # dodanie linii regresji do wykresu
 plot(model1) # e) wykresy diagnostyczne
 
 print("Macierz korelacji dla zmiennych numerycznych")
@@ -132,6 +169,11 @@ cat("R-squared dla modelu2:", summary(model2)$r.squared)
 cat("R-squared dla modelu2 jest większe, co oznacza, że model2 lepiej wyjaśnia zmienność mpg.")
 plot(model1)
 plot(model2)
+
+
+
+
+
 
 # --------------------------------------------------------
 # Zadanie.15
@@ -155,3 +197,26 @@ plot(model2)
 # --------------------------------------------------------
 # tu wpisz swój kod: 
 
+vec <- rpois(1000, lambda=6)
+cat("Średnia: ", mean(vec), "\n")
+cat("Rozstęp: ", range(vec), "\n")
+cat("Wariancja: ", var(vec), "\n")
+cat("Kwartyle: ", quantile(vec), "\n")
+cat("Rozstęp międzykwartylowy: ", IQR(vec), "\n")
+cat("Kurtoza: ", moments::kurtosis(vec), "\n")
+cat("Skośność: ", moments::skewness(vec), "\n")
+cat("Dominanta: ", as.numeric(names(sort(-table(vec)))[1]), "\n")
+
+hist(vec, col="red", main="Histogram 1", xlab="Wartości", ylab="Częstość") # histogram vec
+boxplot(vec, col="blue", main="Wykres pudełkowy 1", ylab="Wartości", range=1) # wykres pudełkowy vec
+
+vec2 <- rpois(1000, lambda=6)
+hist(vec2, col="blue", main="Histogram 2", xlab="Wartości", ylab="Częstość") # histogram vec2
+boxplot(vec2, col="red", main="Wykres pudełkowy 2", ylab="Wartości", range=1) # wykres pudełkowy vec2
+
+par(mfrow = c(1, 2)) # wykresy obok siebie
+hist(vec, col="red", main="Histogram 1", xlab="Wartości", ylab="Częstość") # histogram vec
+hist(vec2, col="blue", main="Histogram 2", xlab="Wartości", ylab="Częstość") # histogram vec2
+par(mfrow = c(1, 2)) # wykresy obok siebie
+boxplot(vec, col="blue", main="Wykres pudełkowy 1", ylab="Wartości", range=1) # wykres pudełkowy vec
+boxplot(vec2, col="red", main="Wykres pudełkowy 2", ylab="Wartości", range=1) # wykres pudełkowy vec2
