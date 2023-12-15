@@ -1,0 +1,157 @@
+Imię: Mateusz
+Nazwisko: Ratajczak
+Numer albumu: 29596
+Github: https://github.com/Ne0bliviscaris/R-CDV
+
+# --------------------------------------------------------
+# Zadanie.12 
+#
+# W R dostępne są zbiory WWWusage, presidents oraz mdeaths. Wczytaj je i dokonaj eksploracji danych.
+# Sprawdź czy są to zbiory typu "time series". Opisz jakich okresów dotyczą dane oraz jakim okresom 
+# czasu odpowiadają poszczególne obserwacje. Sporządź również wykresy liniowe obrazujące te szeregi czasowe.
+#
+# Pełne rozwiązanie tego zadania musi zawierać dla każdego zbioru: 
+#	- Twój kod R, 
+#	- Twój opis i interprację szeregów czasowych,
+#   - czytelną wizualizację na wykresach. 
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+head(WWWusage) # pierwsze 6 obserwacji
+str(WWWusage) # struktura danych
+table(is.na(WWWusage)) # sprawdzenie czy są braki danych
+# Zbiór WWWusage to czereg czasowy 100 pomiarów ilości użytkowników internetu w ciągu jednej minuty.
+# Ze zbioru nie da się wywnioskować, jakiego okresu dotyczą dane. Zbiór nie zawiera braków danych.
+plot(WWWusage, xlab="Pomiar", ylab="Użytkownicy internetu", main="Liczba użytkowników internetu w czasie", col="#5c1515")
+
+
+head(presidents) # pierwsze 6 obserwacji
+str(presidents) # struktura danych
+table(is.na(presidents)) # sprawdzenie czy są braki danych
+# Zbiór presidents to szereg czasowy 120 kwartalnych pomiarów popularności prezydentów USA w latach 1945-1974. W zbiorze brakuje wartości dla 6 pomiarów.
+plot(presidents, xlab="Czas", ylab="% poparcia dla prezydenta", main="Popularność prezydentów USA w latach 1945-1974", col="#5c1515", type="h")
+
+
+head(mdeaths) # pierwsze 6 obserwacji
+str(mdeaths) # struktura danych
+table(is.na(mdeaths)) # sprawdzenie czy są braki danych
+# Zbiór mdeaths to szereg czasowy 72 miesięcznych pomiarów liczby zgonów na zapalenie oskrzeli, rozedmę płuc i astmę  pośród mężczyzn w Anglii i Walii w latach 1974-1979.
+# W zbiorze nie ma braków danych.
+plot(mdeaths, xlab="Czas", ylab="Liczba zgonów", main="Liczba zgonów w wyniku zapalenia oskrzeli, rozedmy płuc i astmy pośród mężczyzn w UK w latach 1974-1979.", col="#5c1515")
+
+# --------------------------------------------------------
+# Zadanie.13
+#
+# Dostępny jest zbiór danych prezentujących liczbę małżeństw (v1). Prezentuje on dane za okres od stycznia
+# 2009 do grudnia 2011. Dokonaj jego dekompozycji. Wybierz właściwy typ modelu wahań w czasie. Wykreśl
+# wyniki. Odpowiedz na pytania:
+#
+# W których miesiącach jest najwyższy dodatni poziom wahań sezonowych, 
+# a w których jest najniższy? Uzasadnij odpowiedź i zinterpretuj wyniki.
+#  
+# O ile procent w każdym miesiącu wskaźniki sezonowości odchylają się od średniej dla danego miesiąca?
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+	v1 <-  c(10.8, 12.9, 4.7, 28.1, 6.1, 23.1, 20.2, 23.7, 30.4, 24.6, 7.7, 14.8,
+			   10.2, 10.9, 4.9, 27.3, 6.0, 27.6, 16.7, 28.3, 26.7, 24.8, 8.2, 12.9,
+				9.8,  7.9, 8.1, 25.7, 6.3, 25.2, 18.8, 29.6, 26.2, 26.1, 8.3, 12.9)
+
+
+
+# --------------------------------------------------------
+# Zadanie.14
+#
+# W pakiecie ISLR dostępny jest zbiór "Auto "z informacją o różnych modelach samochodów.
+# Zapoznaj się ze znaczeniem zmiennych zbioru. Dokonaj eksploracji zbioru za pomocą
+# poznanych funkcji (np. head, summary, itd.).
+#
+# Utwórz model1 regresji liniowej ze zmienną mpg jako objaśnianą a horsepower jako objaśniającą.
+# Zastanów się co zawierają zmienne i czy istnieje związek przyczynowo-skutkowy. 
+# Zinterpretuj zmienne i uzasadnij związek.
+# 
+# Dokonaj analizy parametrów modelu za pomocą funkcji summary(). Na podstawie je wyników odpowiedz 
+# na następujace pytania:
+# a) Czy istnieje związek pomiędzy zmienną objaśniającą a objaśnianą?
+# b) Jak można interpretować wartość współczynnika regresji?
+# c) Jaką liczbę mil per galon paliwa model przewiduje dla 98 koni mechanicznych? 
+# {wskazówka: użyj funkcji predict z argumentem interval="conficence"
+# d) utwórz wykres rozrzutu dla tych dwóch zmiennych; dodaj linię regresji za pomocą funkcji "abline"
+# e) użyj funkcji "plot", żeby obejrzeć wykresy diagnostyczne
+#
+# Spróbuj stworzyć model dla większej liczby zmiennych. 
+# Najpierw stwórz macierz korelacji dla zmiennych numerycznych używająch funkcji cor(). 
+# (pamiętaj, że w argumencie funkcji cor powinny być dane bez zmiennych kategorycznych)
+# f) które zmienne numeryczne są silnie skorelowane ze zmienną objaśnianą?
+#
+# Stwórz teraz model2 oparty na wszystkich zmiennych.
+# g) Które zmienne są powiązane ze zmienną objaśnianą (mpg) w statystycznie istotnym stopniu?
+# h) Jak można interpretować współczynnik przy zmiennej "year"?
+#
+# Porównaj modele ze względu na wartość R kwadrat 
+# i stwórz wykresy diagnostyczne dla obu modeli.
+
+	?Auto
+
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
+head(ISLR::Auto) # pierwsze 6 obserwacji
+str(ISLR::Auto) # struktura danych
+table(is.na(ISLR::Auto)) # sprawdzenie czy są braki danych
+summary(ISLR::Auto) # podstawowe statystyki
+head(unique(ISLR::Auto$name)) # sprawdzenie zawartości kolumny name
+colnames(ISLR::Auto) # nazwy kolumn
+model1 <- lm(mpg ~ horsepower, data=ISLR::Auto) # tworzenie modelu mierzącego wpływ mocy silnika (horsepower) na spalanie (mpg)
+summary(model1) # podsumowanie modelu
+
+cat("Wraz ze wzrostem mocy silnika, współczynnik mpg maleje.") #a)
+cat("Współczynnik regresji wynosi -0.1578, co oznacza, że wraz ze wzrostem mocy silnika o 1 jednostkę, mpg maleje o 0.1578 jednostki.") #b)
+predict(model1, data.frame(horsepower=98), interval="confidence") # c) predykcja dla mocy silnika 98
+plot(ISLR::Auto$horsepower, ISLR::Auto$mpg, xlab="Horsepower", ylab="Miles per galon", main="Wpływ mocy silnika na spalanie", col="#5c1515") # d)
+abline(model1, col="#5c1515") # dodanie linii regresji do wykresu
+plot(model1) # e) wykresy diagnostyczne
+
+print("Macierz korelacji dla zmiennych numerycznych")
+cor(ISLR::Auto[, sapply(ISLR::Auto, is.numeric)]) # macierz korelacji dla zmiennych numerycznych
+cat("Zmienne numeryczne silnie skorelowane ze zmienną objaśnianą (mpg):\n") #f) silna koleracja z mpg
+names(abs(cor(Auto[, sapply(Auto, is.numeric)])[,"mpg"])[abs(cor(Auto[, sapply(Auto, is.numeric)])[,"mpg"])>0.7])
+
+model2 <- lm(mpg ~ ., data=ISLR::Auto) # model2 oparty na wszystkich zmiennych
+summary(model2) # podsumowanie modelu
+p_values <- summary(model2)$coefficients[, "Pr(>|t|)"] # p-value dla wszystkich zmiennych objaśniających
+significant_variables <- names(p_values)[p_values < 0.05] # zmienna jest istotna, jeśli p-value < 0.05
+cat("Zmienne powiązane z mpg w statystycznie istotnyn stopniu:\n")
+print(significant_variables) #g)
+cat("Współczynnik year odpowiada za rok produkcji samochodu.") #h)
+cat("R-squared dla modelu1:", summary(model1)$r.squared)
+cat("R-squared dla modelu2:", summary(model2)$r.squared)
+cat("R-squared dla modelu2 jest większe, co oznacza, że model2 lepiej wyjaśnia zmienność mpg.")
+plot(model1)
+plot(model2)
+
+# --------------------------------------------------------
+# Zadanie.15
+#
+# Wygeneruj 1000-elementowy wektor z rozkładu Poisonna z parametrem lambda=6. Policz dla tego wektora:
+# - średnią, 
+# - rozstęp, 
+# - wariancję, 
+# - kwartyle, 
+# - rozstęp międzykwartylowy, 
+# - kurtozę, 
+# - skośność ,
+# - oraz dominantę.
+# Zwizualizuj wektor za pomocą histogramu oraz wykresu pudełkowego (użyj kolorów, ustaw tytuły osi, wykresu).
+# Jak mają się do siebie średnia, mediana i dominanta?
+# Wygeneruj ponownie losowy wektor (korzystając z tej samej komendy) i uruchom ponownie napisane komendy. 
+# Czy są wyraźne różnice?
+
+
+#
+# --------------------------------------------------------
+# tu wpisz swój kod: 
+
